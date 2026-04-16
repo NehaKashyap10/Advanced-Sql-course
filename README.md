@@ -1,2 +1,4 @@
-# sql-student-template
-Template that sets up a CodeSpace for students of the SQL courses
+# Neha sql course 
+Learning about 
+* Windows function
+* _tally_ tables
