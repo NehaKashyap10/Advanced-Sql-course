@@ -34,3 +34,33 @@ d) only the surgical wards (i.e. wards ending with the word Surgery)
 */
 
 -- Write the SQL statement here
+	-- for each country, list and the three dates with the highest daily cases
+
+Select * from 
+
+
+(SELECT 
+    cc.Country
+    , cc.DateRecorded
+    , cc.DailyCases
+    , RANK() OVER (PARTITION BY cc.Country ORDER BY cc.DailyCases DESC) Ranking
+FROM
+    CovidCase cc)as Ranked_data
+	where Ranked_data.Ranking <=3
+
+
+	
+	-- for each country, list and the three dates with the highest daily cases
+WITH cte AS (
+SELECT
+    cc.Country
+    , cc.DateRecorded
+    , cc.DailyCases
+    , RANK() OVER (PARTITION BY cc.Country ORDER BY cc.DailyCases DESC) Ranking
+FROM
+    CovidCase cc )
+SELECT
+    *
+FROM cte
+where cte.Ranking <= 3
+ORDER BY cte.Country, cte.Ranking;
